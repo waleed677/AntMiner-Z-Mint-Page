@@ -6,7 +6,6 @@ import * as s from "./../../styles/globalStyles";
 import whitelistAddresses from "../walletAddresses";
 import Loader from "../../components/Loader/loader";
 // Add this import line at the top
-import { CrossmintPayButton } from "@crossmint/client-sdk-react-ui";
 const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
 const web3 = createAlchemyWeb3("https://eth-sepolia.g.alchemy.com/v2/DVLsc538L8v85wdCvvVievgOq9y9xG_7");
 var Web3 = require('web3');
@@ -181,7 +180,8 @@ function Home() {
         }
       } 
       else {
-        let totalPublic = 1500;
+        let totalPublic = CONFIG.MAX_SUPPLY;
+        console.log({totalPublic})
         supply < totalPublic ? setDisable(false) : setDisable(true);
         setFeedback(`Welcome, you can mint up to ${nftMintedByUser} NFTs per transaction`)
       }
@@ -391,15 +391,7 @@ function Home() {
             </>
           )}
           <s.SpacerLarge />
-          <s.Container ai={"center"} jc={"center"} fd={"row"}>
-            <CrossmintPayButton
-              collectionTitle="Ace Miners NFT"
-              collectionDescription="Ace Miners NFT"
-              collectionPhoto=""
-              clientId="2acacda4-b85d-4716-8331-93f466b7a24c"
-              mintConfig={{ "_mintAmount": mintAmount, "totalPrice": displayCost, "sortPairs": "true", "_merkleProof": ["0x88095008e39f4b2aaedb943bffd566d1d40509ca3c077fd5855697a8a3bea455"] }}
-            />
-          </s.Container>
+        
           <s.SpacerLarge />
           {blockchain.errorMsg !== "" ? (
             <s.connectButton
