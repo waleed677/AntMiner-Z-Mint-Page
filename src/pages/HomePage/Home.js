@@ -4,12 +4,11 @@ import { connectWallet } from "../../redux/blockchain/blockchainActions";
 import { fetchData } from "./../../redux/data/dataActions";
 import * as s from "./../../styles/globalStyles";
 import whitelistAddresses from "../walletAddresses";
-import earlyAccessAddresses from "../walletAddressesEarlyAccess";
 import Loader from "../../components/Loader/loader";
 // Add this import line at the top
 import { CrossmintPayButton } from "@crossmint/client-sdk-react-ui";
 const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
-const web3 = createAlchemyWeb3("https://eth-mainnet.g.alchemy.com/v2/DVLsc538L8v85wdCvvVievgOq9y9xG_7");
+const web3 = createAlchemyWeb3("https://eth-sepolia.g.alchemy.com/v2/DVLsc538L8v85wdCvvVievgOq9y9xG_7");
 var Web3 = require('web3');
 var Contract = require('web3-eth-contract');
 const { MerkleTree } = require('merkletreejs');
@@ -19,14 +18,10 @@ const keccak256 = require('keccak256');
 const leafNodes = whitelistAddresses.map(addr => keccak256(addr));
 const merkleTree = new MerkleTree(leafNodes, keccak256, { sortPairs: true });
 const rootHash = merkleTree.getRoot();
-console.log('Whitelist Merkle Tree\n', merkleTree.toString());
+// console.log('Whitelist Merkle Tree\n', merkleTree.toString());
 
 
-// EarlyAccess MerkleTree
-const leafNodesEarly = earlyAccessAddresses.map(addr => keccak256(addr));
-const merkleTreeEarly = new MerkleTree(leafNodesEarly, keccak256, { sortPairs: true });
-const rootHashEarly = merkleTreeEarly.getRoot();
-// console.log('Early Access Tree\n', merkleTreeEarly.toString());
+
 
 
 
@@ -83,7 +78,7 @@ function Home() {
 
 
     blockchain.smartContract.methods
-      .mint(mintAmount, proof)
+      .mint(blockchain.account, mintAmount, proof)
       .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.CONTRACT_ADDRESS,
@@ -184,24 +179,7 @@ function Home() {
           setFeedback(`Sorry, your wallet is not on the whitelist`);
           setDisable(true);
         }
-      } else if (currentState == 2) {
-        let totalEANfts = 150;
-        supply < totalEANfts && nftMintedByUser != 0 ? setDisable(false) : setDisable(true);
-        const claimingAddress = keccak256(blockchain.account);
-        const hexProof = merkleTreeEarly.getHexProof(claimingAddress);
-        setProof(hexProof);
-        let mintEarly = merkleTreeEarly.verify(hexProof, claimingAddress, rootHashEarly);
-        let mintEAContractMethod = await blockchain.smartContract.methods
-          .isEarlyAccess(blockchain.account, hexProof)
-          .call();
-        if (mintEAContractMethod && mintEarly) {
-          setCanMintEA(mintEarly);
-          setFeedback(`Welcome Early Access Member, you can mint up to ${nftMintedByUser} NFTs`)
-        } else {
-          setFeedback(`Sorry, your wallet is not on the Early Access list`);
-          setDisable(true);
-        }
-      }
+      } 
       else {
         let totalPublic = 1500;
         supply < totalPublic ? setDisable(false) : setDisable(true);
@@ -241,20 +219,6 @@ function Home() {
       setDisable(true);
       setDisplayCost(0.00);
       setMax(0);
-    }
-    else if (currentState == 2) {
-      setStatusAlert("EARLY ACCESS IS NOW LIVE!");
-      let earlyAccessCost = await contract.methods
-        .costEarlyAccess()
-        .call();
-      setDisplayCost(web3.utils.fromWei(earlyAccessCost));
-      setNftCost(web3.utils.fromWei(earlyAccessCost));
-      setFeedback("Have you got the Early Access?");
-
-      let earlyMax = await contract.methods
-        .maxMintAmountEarlyAccess()
-        .call();
-      setMax(earlyMax);
     }
     else if (currentState == 1) {
       let wlCost = await contract.methods
@@ -330,7 +294,7 @@ function Home() {
           <s.FlexContainer fd={"row"} ai={"center"} jc={"space-between"}>
             <s.TextTitle>Available</s.TextTitle>
             <s.TextTitle color={"var(--primary)"}>
-              {1500 - supply} / {CONFIG.MAX_SUPPLY}
+              {CONFIG.MAX_SUPPLY - supply} / {CONFIG.MAX_SUPPLY}
             </s.TextTitle>
           </s.FlexContainer>
           <s.SpacerSmall />
@@ -426,14 +390,14 @@ function Home() {
               {/* ) : ("")} */}
             </>
           )}
-           <s.SpacerLarge />
+          <s.SpacerLarge />
           <s.Container ai={"center"} jc={"center"} fd={"row"}>
             <CrossmintPayButton
               collectionTitle="Ace Miners NFT"
               collectionDescription="Ace Miners NFT"
               collectionPhoto=""
               clientId="2acacda4-b85d-4716-8331-93f466b7a24c"
-              mintConfig={{"_mintAmount": mintAmount, "totalPrice": displayCost, "sortPairs":"true" , "_merkleProof":["0x88095008e39f4b2aaedb943bffd566d1d40509ca3c077fd5855697a8a3bea455"]}}                        
+              mintConfig={{ "_mintAmount": mintAmount, "totalPrice": displayCost, "sortPairs": "true", "_merkleProof": ["0x88095008e39f4b2aaedb943bffd566d1d40509ca3c077fd5855697a8a3bea455"] }}
             />
           </s.Container>
           <s.SpacerLarge />
