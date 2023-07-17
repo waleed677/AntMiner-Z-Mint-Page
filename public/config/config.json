@@ -1,0 +1,17 @@
+{
+  "CONTRACT_ADDRESS": "0x4963c1e910b33d14d80eba45058533da3f8b9921",
+  "SCAN_LINK": "https://etherscan.io/address/0x4963c1e910b33d14d80eba45058533da3f8b9921",
+  "NETWORK": {
+    "NAME": "Ethereum",
+    "SYMBOL": "ETH",
+    "ID": 1
+  },
+  "NETWORK_ID_WALLET" :1,
+  "NFT_NAME": "AntminerZ KASPA",
+  "SYMBOL": "AMZ",
+  "MAX_SUPPLY": 50 ,
+  "GAS_LIMIT": 285000,
+  "MARKETPLACE": "Opeansea",
+  "MARKETPLACE_LINK": "https://opensea.io/collection/mutant-age-camel-club",
+  "SHOW_BACKGROUND": true
+}
