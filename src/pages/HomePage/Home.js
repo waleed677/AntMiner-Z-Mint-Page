@@ -20,10 +20,6 @@ const rootHash = merkleTree.getRoot();
 // console.log('Whitelist Merkle Tree\n', merkleTree.toString());
 
 
-
-
-
-
 function Home() {
 
   const dispatch = useDispatch();
@@ -156,8 +152,7 @@ function Home() {
         .mintableAmountForUser(blockchain.account)
         .call();
       setMax(nftMintedByUser);
-      console.log({ nftMintedByUser });
-
+     
       // Nft states
       if (currentState == 1) {
         let totalWLNfts = 200;
@@ -180,10 +175,11 @@ function Home() {
         }
       } 
       else {
-        let totalPublic = CONFIG.MAX_SUPPLY;
-        console.log({totalPublic})
-        supply < totalPublic ? setDisable(false) : setDisable(true);
-        setFeedback(`Welcome, you can mint up to ${nftMintedByUser} NFTs per transaction`)
+        let totalNFtToMinted = CONFIG.MAX_SUPPLY;
+        +supply < totalNFtToMinted ? setDisable(false) : setDisable(true);
+        if(!disable) {
+          setFeedback(`Welcome, you can mint up to ${nftMintedByUser} NFTs per transaction`)
+        }
       }
     }
   };
@@ -212,7 +208,13 @@ function Home() {
       .call();
     setState(currentState);
 
-    // Set Price and Max According to State
+
+    if( currentState == 2 && totalSupply >= 50) {
+      setStatusAlert("ALL NFT's Minted");
+      setDisable(true);
+      return;
+    }
+
 
     if (currentState == 0) {
       setStatusAlert("MINT NOT LIVE YET!");
@@ -234,6 +236,7 @@ function Home() {
         .call();
       setMax(wlMax);
     }
+
     else {
       let puCost = await contract.methods
         .cost()
@@ -307,7 +310,7 @@ function Home() {
             <s.AmountContainer ai={"center"} jc={"center"} fd={"row"}>
               <s.StyledRoundButton
                 style={{ lineHeight: 0.4 }}
-                disabled={claimingNft ? 1 : 0}
+                disabled={claimingNft ? 1 : 0 || disable ? 1: 0}
                 onClick={(e) => {
                   e.preventDefault();
                   decrementMintAmount();
@@ -321,7 +324,7 @@ function Home() {
               </s.TextDescription>
               <s.SpacerMedium />
               <s.StyledRoundButton
-                disabled={claimingNft ? 1 : 0}
+                disabled={claimingNft ? 1 : 0 || disable ? 1: 0}
                 onClick={(e) => {
                   e.preventDefault();
                   incrementMintAmount();
@@ -333,6 +336,7 @@ function Home() {
 
             <s.maxButton
               style={{ cursor: "pointer" }}
+              disabled={claimingNft ? 1 : 0 || disable ? 1: 0}
               onClick={(e) => {
                 e.preventDefault();
                 maxNfts();
@@ -378,7 +382,7 @@ function Home() {
                   color: "#fff",
                   cursor: "pointer",
                 }}
-                disabled={state == 0 ? 1 : 0}
+                disabled={state == 0 ? 1 : 0 || disable ? 1: 0}
                 onClick={(e) => {
                   e.preventDefault();
                   dispatch(connectWallet());
