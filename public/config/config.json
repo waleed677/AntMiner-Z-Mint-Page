@@ -1,12 +1,12 @@
 {
-  "CONTRACT_ADDRESS": "0x4963c1e910b33d14d80eba45058533da3f8b9921",
-  "SCAN_LINK": "https://etherscan.io/address/0x4963c1e910b33d14d80eba45058533da3f8b9921",
+  "CONTRACT_ADDRESS": "0x971be4a54B3E31B3dE5Ef89e25A1451c38429431",
+  "SCAN_LINK": "https://etherscan.io/address/0x971be4a54B3E31B3dE5Ef89e25A1451c38429431",
   "NETWORK": {
     "NAME": "Ethereum",
     "SYMBOL": "ETH",
-    "ID": 11155111
+    "ID": 1
   },
-  "NETWORK_ID_WALLET" :11155111,
+  "NETWORK_ID_WALLET" :1,
   "NFT_NAME": "AntminerZ KASPA",
   "SYMBOL": "AMZ",
   "MAX_SUPPLY": 50 ,
