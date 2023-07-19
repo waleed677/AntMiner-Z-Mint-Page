@@ -91,12 +91,13 @@ function Home() {
         setMintDone(true);
         setFeedback(`Congratulation, your mint is successful.`);
         setClaimingNft(false);
-        blockchain.smartContract.methods
+        const totalSupply = blockchain.smartContract.methods
           .totalSupply()
           .call()
           .then((res) => {
             setTotalSupply(res);
           });
+      
         dispatch(fetchData(blockchain.account));
         getData();
       });
@@ -130,10 +131,22 @@ function Home() {
     setMintAmount(max);
 
     setDisplayCost(
-      parseFloat(nftCost * max).toFixed(2)
+      parseFloat(nftCost * max).toFixed(5)
     );
 
   };
+
+  const canNftMinted = (supply, config) => {
+
+    const isAllMinted = supply >= config.MAX_SUPPLY;
+
+    if(isAllMinted) {
+      setStatusAlert("ALL NFT's Minted");
+      setDisable(true);
+    }
+
+    return !isAllMinted;
+  }
 
   const getData = async () => {
     if (blockchain.account !== "" && blockchain.smartContract !== null) {
@@ -142,16 +155,32 @@ function Home() {
         .totalSupply()
         .call();
       setTotalSupply(totalSupply);
+
+      if(!canNftMinted(totalSupply, CONFIG)) {
+        return;
+      }
+
+
       let currentState = await blockchain.smartContract.methods
         .currentState()
         .call();
       setState(currentState);
+    
 
       //  no of nfts minted by user
       let nftMintedByUser = await blockchain.smartContract.methods
         .mintableAmountForUser(blockchain.account)
         .call();
       setMax(nftMintedByUser);
+
+      let totalNFtToMinted = CONFIG.MAX_SUPPLY;
+      let maxNftMintedByUser = totalNFtToMinted - (+supply);
+      console.log(maxNftMintedByUser, max);
+
+      if(maxNftMintedByUser < (+max)) {
+          setMax(maxNftMintedByUser)
+      }
+
      
       // Nft states
       if (currentState == 1) {
@@ -175,8 +204,8 @@ function Home() {
         }
       } 
       else {
-        let totalNFtToMinted = CONFIG.MAX_SUPPLY;
-        +supply < totalNFtToMinted ? setDisable(false) : setDisable(true);
+        // let totalNFtToMinted = CONFIG.MAX_SUPPLY;
+        // +supply < totalNFtToMinted ? setDisable(false) : setDisable(true);
         if(!disable) {
           setFeedback(`Welcome, you can mint up to ${nftMintedByUser} NFTs per transaction`)
         }
@@ -184,7 +213,7 @@ function Home() {
     }
   };
 
-  const getDataWithAlchemy = async () => {
+  const getDataWithAlchemy = async (config) => {
     const abiResponse = await fetch("/config/abi.json", {
       headers: {
         "Content-Type": "application/json",
@@ -194,8 +223,11 @@ function Home() {
 
 
     const abi = await abiResponse.json();
-    var contract = new Contract(abi, '0x971be4a54B3E31B3dE5Ef89e25A1451c38429431');
+    var contract = new Contract(abi, config.CONTRACT_ADDRESS);
     contract.setProvider(web3.currentProvider);
+
+    let totalNoOfNfts  = config.MAX_SUPPLY;
+
     // Get Total Supply
     const totalSupply = await contract.methods
       .totalSupply()
@@ -208,13 +240,15 @@ function Home() {
       .call();
     setState(currentState);
 
-
-    if( currentState == 2 && totalSupply >= 50) {
-      setStatusAlert("ALL NFT's Minted");
-      setDisable(true);
+    if(!canNftMinted(totalSupply, config)) {
       return;
     }
 
+    // if( currentState == 2 && totalSupply >= 50) {
+    //   setStatusAlert("ALL NFT's Minted");
+    //   setDisable(true);
+    //   return;
+    // }
 
     if (currentState == 0) {
       setStatusAlert("MINT NOT LIVE YET!");
@@ -261,11 +295,13 @@ function Home() {
     });
     const config = await configResponse.json();
     SET_CONFIG(config);
+    return config;
   };
 
   useEffect(() => {
-    getConfig();
-    getDataWithAlchemy();
+   getConfig().then((data) => {
+      getDataWithAlchemy(data);
+    });
     setTimeout(() => {
       setLoading(false);
     }, 1500);
@@ -274,6 +310,8 @@ function Home() {
   useEffect(() => {
     getData();
   }, [blockchain.account]);
+
+
 
   return (
     <>
