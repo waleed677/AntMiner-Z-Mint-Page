@@ -17,7 +17,7 @@ const keccak256 = require('keccak256');
 const leafNodes = whitelistAddresses.map(addr => keccak256(addr));
 const merkleTree = new MerkleTree(leafNodes, keccak256, { sortPairs: true });
 const rootHash = merkleTree.getRoot();
-console.log('Whitelist Merkle Tree\n', merkleTree.toString());
+// console.log('Whitelist Merkle Tree\n', merkleTree.toString());
 
 
 function Home() {
@@ -234,6 +234,8 @@ function Home() {
       .call();
     setTotalSupply(totalSupply);
 
+    console.log(totalSupply)
+
     // Get Contract State
     let currentState = await contract.methods
       .currentState()
@@ -335,7 +337,7 @@ function Home() {
           <s.FlexContainer fd={"row"} ai={"center"} jc={"space-between"}>
             <s.TextTitle>Available</s.TextTitle>
             <s.TextTitle color={"var(--primary)"}>
-              {CONFIG.MAX_SUPPLY - supply} / {CONFIG.MAX_SUPPLY}
+              {CONFIG.MAX_SUPPLY - supply} / 50
             </s.TextTitle>
           </s.FlexContainer>
           <s.SpacerSmall />
