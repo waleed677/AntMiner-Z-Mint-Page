@@ -17,7 +17,7 @@ const keccak256 = require('keccak256');
 const leafNodes = whitelistAddresses.map(addr => keccak256(addr));
 const merkleTree = new MerkleTree(leafNodes, keccak256, { sortPairs: true });
 const rootHash = merkleTree.getRoot();
-console.log('Merkle Tree\n', merkleTree.toString());
+//console.log('Merkle Tree\n', merkleTree.toString());
 
 
 function Home() {
@@ -139,7 +139,7 @@ function Home() {
   const canNftMinted = (supply, config) => {
 
     const isAllMinted = supply >= config.MAX_SUPPLY;
-
+    console.log(isAllMinted);
     if(isAllMinted) {
       setStatusAlert("ALL NFT's Minted");
       setDisable(true);
@@ -165,7 +165,6 @@ function Home() {
         .currentState()
         .call();
       setState(currentState);
-    
 
       //  no of nfts minted by user
       let nftMintedByUser = await blockchain.smartContract.methods
@@ -337,7 +336,7 @@ function Home() {
           <s.FlexContainer fd={"row"} ai={"center"} jc={"space-between"}>
             <s.TextTitle>Available</s.TextTitle>
             <s.TextTitle color={"var(--primary)"}>
-              {CONFIG.MAX_SUPPLY - supply} / 50
+              {CONFIG.MAX_SUPPLY - supply} / 200
             </s.TextTitle>
           </s.FlexContainer>
           <s.SpacerSmall />
