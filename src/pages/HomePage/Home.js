@@ -183,8 +183,6 @@ function Home() {
      
       // Nft states
       if (currentState == 1) {
-        let totalWLNfts = 200;
-        supply < totalWLNfts && nftMintedByUser != 0 ? setDisable(false) : setDisable(true);
         const claimingAddress = keccak256(blockchain.account);
         // `getHexProof` returns the neighbour leaf and all parent nodes hashes that will
         // be required to derive the Merkle Trees root hash.
