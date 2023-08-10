@@ -17,7 +17,7 @@ const keccak256 = require('keccak256');
 const leafNodes = whitelistAddresses.map(addr => keccak256(addr));
 const merkleTree = new MerkleTree(leafNodes, keccak256, { sortPairs: true });
 const rootHash = merkleTree.getRoot();
-console.log('Merkle Tree updated\n', merkleTree.toString());
+console.log('Merkle Tree\n', merkleTree.toString());
 
 
 function Home() {
@@ -334,7 +334,7 @@ function Home() {
           <s.FlexContainer fd={"row"} ai={"center"} jc={"space-between"}>
             <s.TextTitle>Available</s.TextTitle>
             <s.TextTitle color={"var(--primary)"}>
-              {CONFIG.MAX_SUPPLY - supply} / 250
+              {CONFIG.MAX_SUPPLY - supply} / 300
             </s.TextTitle>
           </s.FlexContainer>
           <s.SpacerSmall />
