@@ -334,7 +334,7 @@ function Home() {
           <s.FlexContainer fd={"row"} ai={"center"} jc={"space-between"}>
             <s.TextTitle>Available</s.TextTitle>
             <s.TextTitle color={"var(--primary)"}>
-              {CONFIG.MAX_SUPPLY - supply} / 350
+              {CONFIG.MAX_SUPPLY - supply} / 400
             </s.TextTitle>
           </s.FlexContainer>
           <s.SpacerSmall />
