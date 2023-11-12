@@ -239,6 +239,8 @@ function Home() {
       .call();
     setState(currentState);
 
+    console.log({currentState})
+
     if(!canNftMinted(totalSupply, config)) {
       return;
     }
