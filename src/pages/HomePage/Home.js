@@ -223,6 +223,7 @@ function Home() {
     var contract = new Contract(abi, config.CONTRACT_ADDRESS);
     contract.setProvider(web3.currentProvider);
 
+    console.log({contract})
     let totalNoOfNfts  = config.MAX_SUPPLY;
 
     // Get Total Supply
