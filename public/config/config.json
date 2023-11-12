@@ -9,7 +9,7 @@
   "NETWORK_ID_WALLET" :11155111,
   "NFT_NAME": "Antz Kaspa Pro Upgrade",
   "SYMBOL": "AMZ",
-  "MAX_SUPPLY": 50 ,
+  "MAX_SUPPLY": 100 ,
   "GAS_LIMIT": 285000,
   "MARKETPLACE": "Opeansea",
   "MARKETPLACE_LINK": "https://opensea.io/collection/mutant-age-camel-club",
