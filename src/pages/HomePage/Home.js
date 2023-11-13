@@ -7,7 +7,7 @@ import whitelistAddresses from "../walletAddresses";
 import Loader from "../../components/Loader/loader";
 // Add this import line at the top
 const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
-const web3 = createAlchemyWeb3("https://eth-sepolia.g.alchemy.com/v2/DVLsc538L8v85wdCvvVievgOq9y9xG_7");
+const web3 = createAlchemyWeb3("https://eth-mainnet.g.alchemy.com/v2/DVLsc538L8v85wdCvvVievgOq9y9xG_7");
 var Web3 = require('web3');
 var Contract = require('web3-eth-contract');
 const { MerkleTree } = require('merkletreejs');

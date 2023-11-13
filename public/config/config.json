@@ -1,14 +1,14 @@
 {
-  "CONTRACT_ADDRESS": "0x0189070CCBD7F31c46cD5b0fF69cBdaf416B1c06",
-  "SCAN_LINK": "https://etherscan.io/address/0x971be4a54b3e31b3de5ef89e25a1451c38429431",
+  "CONTRACT_ADDRESS": "0xeA695b6b545d424E520BfB4dDcb009EB61fE1428",
+  "SCAN_LINK": "https://etherscan.io/address/0xeA695b6b545d424E520BfB4dDcb009EB61fE1428",
   "NETWORK": {
     "NAME": "Ethereum",
     "SYMBOL": "ETH",
-    "ID": 11155111
+    "ID": 1
   },
-  "NETWORK_ID_WALLET" :11155111,
-  "NFT_NAME": "Antz Kaspa Pro Upgrade",
-  "SYMBOL": "AMZ",
+  "NETWORK_ID_WALLET" :1,
+  "NFT_NAME": "Antz Kaspa Turbo",
+  "SYMBOL": "AKT",
   "MAX_SUPPLY": 100 ,
   "GAS_LIMIT": 285000,
   "MARKETPLACE": "Opeansea",
