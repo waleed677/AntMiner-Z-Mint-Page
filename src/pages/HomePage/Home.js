@@ -433,7 +433,7 @@ function Home() {
               >
                 Connect Wallet
               </s.connectButton>
-<iframe height="550" style="border:none" src="https://payments.nftpay.xyz/iframe/iframe_pay/3a740eb9-4d00-4347-b53f-412d758c51d7?&_merkleProof=xxxxxxxx"></iframe>
+
               </>
               {/* ) : ("")} */}
             </>
