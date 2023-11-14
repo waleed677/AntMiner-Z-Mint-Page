@@ -433,7 +433,25 @@ function Home() {
               >
                 Connect Wallet
               </s.connectButton>
-
+              <link rel="stylesheet" type="text/css" href="https://payments.nftpay.xyz/css/iframe_inject.css" /> 
+<script id="creatify_script" src="https://payments.nftpay.xyz/libs/iframe_inject.js?contract_uuid=3a740eb9-4d00-4347-b53f-412d758c51d7&_merkleProof=xxxxxxxx"></script> 
+                <s.connectButton
+                  style={{
+                    textAlign: "center",
+                    cursor: "pointer",
+                    color: "#fff",
+                    marginTop:'20px'
+                  }}
+                  onclick="show_creatify_popup()"
+                >
+                  Buy with card{" "}
+                  <span id="price-3a740eb9-4d00-4347-b53f-412d758c51d7">
+                    <img
+                      class="nftpay_spinner"
+                      src="https://payments.nftpay.xyz/img/icons/spinner2.svg"
+                    />
+                  </span>
+                </s.connectButton>
               </>
               {/* ) : ("")} */}
             </>
