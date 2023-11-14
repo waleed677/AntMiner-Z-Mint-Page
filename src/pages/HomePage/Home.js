@@ -434,8 +434,6 @@ function Home() {
                 Connect Wallet
               </s.connectButton>
 
-              <button onclick="show_creatify_popup()">Buy with card <span id="price-3a740eb9-4d00-4347-b53f-412d758c51d7">
-                <img class='nftpay_spinner' src='https://payments.nftpay.xyz/img/icons/spinner2.svg'/></span></button>
               </>
               {/* ) : ("")} */}
             </>
