@@ -9,7 +9,7 @@
   "NETWORK_ID_WALLET" :1,
   "NFT_NAME": "Antz Kaspa Turbo",
   "SYMBOL": "AKT",
-  "MAX_SUPPLY": 100 ,
+  "MAX_SUPPLY": 200 ,
   "GAS_LIMIT": 285000,
   "MARKETPLACE": "Opeansea",
   "MARKETPLACE_LINK": "https://opensea.io/collection/mutant-age-camel-club",
