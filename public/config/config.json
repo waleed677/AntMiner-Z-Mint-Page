@@ -1,15 +1,15 @@
 {
-  "CONTRACT_ADDRESS": "0xeA695b6b545d424E520BfB4dDcb009EB61fE1428",
-  "SCAN_LINK": "https://etherscan.io/address/0xeA695b6b545d424E520BfB4dDcb009EB61fE1428",
+  "CONTRACT_ADDRESS": "0x3b863d9f4d585125c4dcba4aa8d131342c4a624e",
+  "SCAN_LINK": "https://etherscan.io/address/0x3b863d9f4d585125c4dcba4aa8d131342c4a624e",
   "NETWORK": {
     "NAME": "Ethereum",
     "SYMBOL": "ETH",
     "ID": 1
   },
   "NETWORK_ID_WALLET" :1,
-  "NFT_NAME": "Antz Kaspa Turbo",
+  "NFT_NAME": "Antz Kaspa Turbo 2",
   "SYMBOL": "AKT",
-  "MAX_SUPPLY": 320 ,
+  "MAX_SUPPLY": 100 ,
   "GAS_LIMIT": 285000,
   "MARKETPLACE": "Opeansea",
   "MARKETPLACE_LINK": "https://opensea.io/collection/mutant-age-camel-club",
