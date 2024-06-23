@@ -2,7 +2,7 @@
 
 
 ## Website Link
-https://mint.aceminersnft.io/
+https://turbo.antminerznft.io/
 
 
 # Fleek Web access
