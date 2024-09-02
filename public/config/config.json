@@ -1,13 +1,13 @@
 {
-  "CONTRACT_ADDRESS": "0x3b863d9f4d585125c4dcba4aa8d131342c4a624e",
-  "SCAN_LINK": "https://etherscan.io/address/0x3b863d9f4d585125c4dcba4aa8d131342c4a624e",
+  "CONTRACT_ADDRESS": "0x1d4dF34B59F3185D3b65D227F3eC8b33cA76c9aC",
+  "SCAN_LINK": "https://etherscan.io/address/0x1d4dF34B59F3185D3b65D227F3eC8b33cA76c9aC",
   "NETWORK": {
     "NAME": "Ethereum",
     "SYMBOL": "ETH",
     "ID": 1
   },
   "NETWORK_ID_WALLET" :1,
-  "NFT_NAME": "Antz Kaspa Turbo 2",
+  "NFT_NAME": "ACE LTC BOOST",
   "SYMBOL": "AKT",
   "MAX_SUPPLY": 100 ,
   "GAS_LIMIT": 285000,
