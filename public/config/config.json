@@ -1,15 +1,15 @@
 {
-  "CONTRACT_ADDRESS": "0x1d4dF34B59F3185D3b65D227F3eC8b33cA76c9aC",
-  "SCAN_LINK": "https://etherscan.io/address/0x1d4dF34B59F3185D3b65D227F3eC8b33cA76c9aC",
+  "CONTRACT_ADDRESS": "0x601583b291cA3d5D73D6eCD5c074FF1961d0a53a",
+  "SCAN_LINK": "https://etherscan.io/address/0x601583b291cA3d5D73D6eCD5c074FF1961d0a53a",
   "NETWORK": {
     "NAME": "Ethereum",
     "SYMBOL": "ETH",
     "ID": 1
   },
   "NETWORK_ID_WALLET" :1,
-  "NFT_NAME": "ACE LTC BOOST",
-  "SYMBOL": "AKT",
-  "MAX_SUPPLY": 40 ,
+  "NFT_NAME": "Antminerz BTC Edition",
+  "SYMBOL": "ABE",
+  "MAX_SUPPLY": 100 ,
   "GAS_LIMIT": 285000,
   "MARKETPLACE": "Opeansea",
   "MARKETPLACE_LINK": "https://opensea.io/collection/mutant-age-camel-club",
